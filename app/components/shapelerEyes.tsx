@@ -22,11 +22,11 @@ export default function ShapelerEyes({ pupil="Normal", type, baby=false, male=tr
     return(
         <div className="flex flex-row justify-center items-center space-between w-full h-full absolute">
             <div className="flex flex-row justify-center items-center space-between w-full h-full absolute">
-                <img className="relative right-7 bottom-6" style={{bottom: selectedOffsets.eyes.y, right: selectedOffsets.eyes.x}} src={baby ? `/Parts/Shapelet/Eyes/Shapelet-Eye-${male ? "Male" : "Female" }.png` : `/Parts/Shapeler/Eyes/Eye-${male ? "Male" : "Female" }.png` } />
-                <img className="relative left-7 bottom-6 -scale-x-100" style={{bottom: selectedOffsets.eyes.y, left: selectedOffsets.eyes.x}} src={baby ? `/Parts/Shapelet/Eyes/Shapelet-Eye-${male ? "Male" : "Female" }.png` : `/Parts/Shapeler/Eyes/Eye-${male ? "Male" : "Female" }.png` } />
+                <img className="relative" style={{bottom: selectedOffsets.eyes.y, right: selectedOffsets.eyes.x}} src={baby ? `/Parts/Shapelet/Eyes/Shapelet-Eye-${male ? "Male" : "Female" }.png` : `/Parts/Shapeler/Eyes/Eye-${male ? "Male" : "Female" }.png` } />
+                <img className="relative -scale-x-100" style={{bottom: selectedOffsets.eyes.y, left: selectedOffsets.eyes.x}} src={baby ? `/Parts/Shapelet/Eyes/Shapelet-Eye-${male ? "Male" : "Female" }.png` : `/Parts/Shapeler/Eyes/Eye-${male ? "Male" : "Female" }.png` } />
             </div>
-            <img className="relative right-12 bottom-6" style={{bottom: selectedOffsets.pupils.y, right: selectedOffsets.pupils.x}} src={baby ? `/Parts/Shapelet/Eyes/Pupils/Shapelet-Pupil-${pupil}.png` : `/Parts/Shapeler/Eyes/Pupils/Pupil-${pupil}.png` } />
-            <img className="relative left-12 bottom-6 -scale-x-100" style={{bottom: selectedOffsets.pupils.y, left: selectedOffsets.pupils.x}} src={baby ? `/Parts/Shapelet/Eyes/Pupils/Shapelet-Pupil-${pupil}.png` : `/Parts/Shapeler/Eyes/Pupils/Pupil-${pupil}.png` } />
+            <img className="relative" style={{bottom: selectedOffsets.pupils.y, right: selectedOffsets.pupils.x}} src={baby ? `/Parts/Shapelet/Eyes/Pupils/Shapelet-Pupil-${pupil}.png` : `/Parts/Shapeler/Eyes/Pupils/Pupil-${pupil}.png` } />
+            <img className="relative -scale-x-100" style={{bottom: selectedOffsets.pupils.y, left: selectedOffsets.pupils.x}} src={baby ? `/Parts/Shapelet/Eyes/Pupils/Shapelet-Pupil-${pupil}.png` : `/Parts/Shapeler/Eyes/Pupils/Pupil-${pupil}.png` } />
         </div>
     )
 }
