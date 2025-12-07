@@ -16,6 +16,18 @@ type ShapelerType = {
     name: string;
 }
 
+const DEFAULT_SHAPELER: ShapelerType = {
+    color: "#f36c60ff",
+    type: "Googler",
+    male: true,
+    baby: false,
+    pupil: "Normal",
+    mouth: "Normal",
+    eyebrow: "Normal",
+    mood: "Normal",
+    name: ""
+}
+
 export default function ShapelerEditor() {
 
     const [loaded, setLoaded] = useState(false);
@@ -32,6 +44,9 @@ export default function ShapelerEditor() {
         name: ""
     });
 
+    const [savedShapelers, setSavedShapelers] = useState<ShapelerType[] | null>(null);
+    const [shapelerIndex, setShapelerIndex] = useState(0);
+
     function setHexColorByChannel(hex: string, channel: "r" | "g" | "b", value: number) {
         const hexValue = value.toString(16).padStart(2, '0');
         const r = channel === 'r' ? hexValue : hex.slice(1, 3);
@@ -41,38 +56,48 @@ export default function ShapelerEditor() {
     }
 
     useEffect(() => {
-        const savedShapeler = localStorage.getItem("shapeler");
-        if (savedShapeler) {
-            setShapeler(JSON.parse(savedShapeler));
+        const localStorageShapelers = localStorage.getItem("savedShapelers");
+        if (localStorageShapelers) {
+            const parsedShapelers = JSON.parse(localStorageShapelers);
+            setSavedShapelers(parsedShapelers);
         } else {
-            setShapeler({
-                color: "#f36c60ff",
-                type: "Googler",
-                male: true,
-                baby: false,
-                pupil: "Normal",
-                mouth: "Normal",
-                eyebrow: "Normal",
-                mood: "Normal",
-                name: ""
-            });
+            setSavedShapelers([DEFAULT_SHAPELER]);
         }
-        setLoaded(true);
     }, []);
 
     function saveShapeler() {
-        localStorage.setItem("shapeler", JSON.stringify(shapeler));
+        
+        setSavedShapelers(s => { {
+            if (!s) return [shapeler];
+            const newSaved = [...s];
+            newSaved[shapelerIndex] = shapeler;
+            localStorage.setItem("savedShapelers", JSON.stringify(newSaved));
+            return newSaved;
+        }});
     }
 
     function logCurrentShapeler() {
         console.log(shapeler);
     }
 
+    useEffect(() => {
+        if (!savedShapelers) return;
+        if (savedShapelers[shapelerIndex]) {
+            setShapeler(savedShapelers[shapelerIndex]);
+        } else {
+            setShapeler(DEFAULT_SHAPELER);
+        }
+        setLoaded(true);
+    }, [shapelerIndex, savedShapelers]);
 
     return (
         <div className = "absolute top-0 left-0 w-full h-full min-h-220">
-            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center cursor-pointer">
+            <button onClick={() => {localStorage.clear(); location.reload()}} className="fixed z-10 bottom-2 right-5 text-[#5b4636] font-bold cursor-pointer hover:bg-[#d7bd8d] px-3 py-1 rounded-2xl border-5 border-transparent hover:border-[#b3855e] transition-all ease-in-out duration-300 hover:-translate-y-2">Clear Data</button>
+            <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
                 { loaded && <Shapeler color={shapeler.color} type={shapeler.type} male={shapeler.male} baby={shapeler.baby} pupil={shapeler.pupil} mouth={shapeler.mouth} eyebrow={shapeler.eyebrow} editing /> }
+                <button onClick={() => {if (shapelerIndex > 0) setShapelerIndex(shapelerIndex-1);}} className="relative w-12 right-5 -scale-x-100 cursor-pointer transition-transform ease-in-out duration-300 hover:-translate-y-2">
+                    <img src="/UI/arrow.png" className={`w-12 ${shapelerIndex <= 0 ? "hidden" : ""}`}/>
+                </button>
                 <input spellCheck="false" autoCorrect="off" autoCapitalize="none" autoComplete="off" className="relative bottom-65 text-6xl font-bold text-[#5b4636] border-b-4 text-center w-100 min-w-100 focus-visible:outline-none" placeholder={shapeler.baby ? shapeler.type.slice(0, -1) + "t" : shapeler.type} value={shapeler.name} onChange={(e) => setShapeler(s => ({...s, name:e.target.value}))}/>
                 <div className="absolute bottom-60 flex flex-row gap-4">
                     <button onClick={() => {saveShapeler()}} className="bg-[#d7bd8d] cursor-pointer px-6 py-2 rounded-2xl border-5 border-[#b3855e] text-[#5b4636] font-bold transition-all ease-in-out duration-300 hover:-translate-y-2 focus-visible:outline-none">
@@ -82,6 +107,9 @@ export default function ShapelerEditor() {
                         Play
                     </button>
                 </div>
+                <button onClick={() => {if (!savedShapelers || shapelerIndex < savedShapelers.length) setShapelerIndex(shapelerIndex+1);}} className="relative w-12 left-5 cursor-pointer transition-transform ease-in-out duration-300 hover:-translate-y-2">
+                    <img src="/UI/arrow.png" className={`w-12 ${!savedShapelers || shapelerIndex >= savedShapelers.length ? "hidden" : ""}`}/>
+                </button>
             </div>
             <div className="fixed bottom-0 w-full flex flex-row gap-8 bg-[#efdbb7] rounded-t-4xl items-center p-10 overflow-auto min-h-24">
                 <div className="flex flex-row gap-4">
