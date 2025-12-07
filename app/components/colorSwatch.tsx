@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 export default function ColorSwatch({ color }: { color: string }) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     useEffect(() => {
-        const swatchPath = "/UI/blankColorSwatch.png";
+        const swatchPath = "./UI/blankColorSwatch.png";
         if (!canvasRef.current || !swatchPath || !color) return;
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");

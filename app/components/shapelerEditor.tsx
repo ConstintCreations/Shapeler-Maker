@@ -211,7 +211,7 @@ export default function ShapelerEditor() {
 
     return (
         <div className = "absolute top-0 left-0 w-full h-full min-h-220">
-            <img src="/UI/ShapelerMaker.png" className="h-30 absolute top-5 left-5" />
+            <img src="./UI/ShapelerMaker.png" className="h-30 absolute top-5 left-5" />
             { loaded && <div className="fixed right-5 top-5 flex flex-row gap-8 bg-[#d7bd8d] px-5 py-4 rounded-2xl border-5 border-[#b3855e] text-[#5b4636] font-bold z-20">
                 <button onClick={() => {if (!showPhotoCountdown) setShowGallery(!showGallery)}} className="cursor-pointer transition-transform ease-in-out duration-300 hover:-translate-y-1 focus-visible:outline-none">
                     <FontAwesomeIcon icon={faImages} className="scale-200 text-[#5b4636]"/>
@@ -259,7 +259,7 @@ export default function ShapelerEditor() {
             <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
                 { loaded && <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center" ref={shapelerRef}><Shapeler color={shapeler.color} type={shapeler.type} male={shapeler.male} baby={shapeler.baby} pupil={shapeler.pupil} mouth={shapeler.mouth} eyebrow={shapeler.eyebrow} editing /></div> }
                 <button onClick={() => {if (shapelerIndex > 0) setShapelerIndex(shapelerIndex-1);}} className="relative w-12 right-5 -scale-x-100 cursor-pointer transition-transform ease-in-out duration-300 hover:-translate-y-2">
-                    <img src="/UI/arrow.png" className={`w-12 ${shapelerIndex <= 0 ? "hidden" : ""}`}/>
+                    <img src="./UI/arrow.png" className={`w-12 ${shapelerIndex <= 0 ? "hidden" : ""}`}/>
                 </button>
                 <input spellCheck="false" autoCorrect="off" autoCapitalize="none" autoComplete="off" className="relative bottom-65 text-6xl font-bold text-[#5b4636] border-b-4 text-center w-100 min-w-100 focus-visible:outline-none" placeholder={shapeler.baby ? shapeler.type.slice(0, -1) + "t" : shapeler.type} value={shapeler.name} onChange={(e) => setShapeler(s => ({...s, name:e.target.value}))}/>
                 <div className="absolute bottom-60 flex flex-row gap-3 bg-[#d7bd8d] px-3 py-2 rounded-2xl border-5 border-[#b3855e] text-[#5b4636] font-bold">
@@ -274,35 +274,35 @@ export default function ShapelerEditor() {
                     </button>
                 </div>
                 <button onClick={() => {if (!savedShapelers || shapelerIndex < savedShapelers.length) setShapelerIndex(shapelerIndex+1);}} className="relative w-12 left-5 cursor-pointer transition-transform ease-in-out duration-300 hover:-translate-y-2">
-                    <img src="/UI/arrow.png" className={`w-12 ${!savedShapelers || shapelerIndex >= savedShapelers.length ? "hidden" : ""}`}/>
+                    <img src="./UI/arrow.png" className={`w-12 ${!savedShapelers || shapelerIndex >= savedShapelers.length ? "hidden" : ""}`}/>
                 </button>
             </div>
             <div className="fixed bottom-0 w-full flex flex-row gap-8 bg-[#efdbb7] rounded-t-4xl items-center p-10 overflow-auto min-h-24 border-5 border-[#b3855e]">
                 <div className="flex flex-row gap-4">
                     <button className={`size-24 cursor-pointer rounded-2xl bg-[#d7bd8d] flex items-center justify-center border-5 transition-all ease-in-out duration-300 hover:-translate-y-2 ${shapeler.male ? "border-[#cfa37d]" : "border-[#b3855e]"}`} onClick={() => setShapeler(s => ({...s, male: true}))}>
-                        <img src="/UI/maleSymbol.png" className="w-16"/>
+                        <img src="./UI/maleSymbol.png" className="w-16"/>
                     </button>
                     <button className={`size-24 cursor-pointer rounded-2xl bg-[#d7bd8d] flex items-center justify-center border-5 transition-all ease-in-out duration-300 hover:-translate-y-2 ${!shapeler.male ? "border-[#cfa37d]" : "border-[#b3855e]"}`} onClick={() => setShapeler(s => ({...s, male: false}))}>
-                        <img src="/UI/femaleSymbol.png" className="h-16"/>
+                        <img src="./UI/femaleSymbol.png" className="h-16"/>
                     </button>
                 </div>
 
                 <button className={`size-24 min-w-24 cursor-pointer rounded-2xl bg-[#d7bd8d] flex items-center justify-center border-5 transition-all ease-in-out duration-300 hover:-translate-y-2 ${shapeler.baby ? "border-[#cfa37d]" : "border-[#b3855e]"}`} onClick={() => setShapeler(s => ({...s, baby: !s.baby}))}>
-                    <img src="/UI/babySymbol.png" className="w-14"/>
+                    <img src="./UI/babySymbol.png" className="w-14"/>
                 </button>
 
                 <div className="flex flex-row gap-2 flex-wrap w-24 min-w-24">
                     <button className={`size-11 cursor-pointer rounded-2xl bg-[#d7bd8d] flex items-center justify-center border-3 transition-all ease-in-out duration-300 hover:-translate-y-1 ${shapeler.type=="Googler" ? "border-[#cfa37d]" : "border-[#b3855e]"}`} onClick={() => setShapeler(s => ({...s, type: "Googler"}))}>
-                        <img src="/Parts/Shapelet/Bodies/Body-Googlet.png" className="w-8"/>
+                        <img src="./Parts/Shapelet/Bodies/Body-Googlet.png" className="w-8"/>
                     </button>
                     <button className={`size-11 cursor-pointer rounded-2xl bg-[#d7bd8d] flex items-center justify-center border-3 transition-all ease-in-out duration-300 hover:-translate-y-1 ${shapeler.type=="Bloopler" ? "border-[#cfa37d]" : "border-[#b3855e]"}`} onClick={() => setShapeler(s => ({...s, type: "Bloopler"}))}>
-                        <img src="/Parts/Shapelet/Bodies/Body-Blooplet.png" className="w-8"/>
+                        <img src="./Parts/Shapelet/Bodies/Body-Blooplet.png" className="w-8"/>
                     </button>
                     <button className={`size-11 cursor-pointer rounded-2xl bg-[#d7bd8d] flex items-center justify-center border-3 transition-all ease-in-out duration-300 hover:-translate-y-1 ${shapeler.type=="Sprickler" ? "border-[#cfa37d]" : "border-[#b3855e]"}`} onClick={() => setShapeler(s => ({...s, type: "Sprickler"}))}>
-                        <img src="/Parts/Shapelet/Bodies/Body-Spricklet.png" className="w-8"/>
+                        <img src="./Parts/Shapelet/Bodies/Body-Spricklet.png" className="w-8"/>
                     </button>
                     <button className={`size-11 cursor-pointer rounded-2xl bg-[#d7bd8d] flex items-center justify-center border-3 transition-all ease-in-out duration-300 hover:-translate-y-1 ${shapeler.type=="Stronkler" ? "border-[#cfa37d]" : "border-[#b3855e]"}`} onClick={() => setShapeler(s => ({...s, type: "Stronkler"}))}>
-                        <img src="/Parts/Shapelet/Bodies/Body-Stronklet.png" className="w-8"/>
+                        <img src="./Parts/Shapelet/Bodies/Body-Stronklet.png" className="w-8"/>
                     </button>
                 </div>
 

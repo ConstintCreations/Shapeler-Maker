@@ -18,7 +18,7 @@ export default function ShapelerMouth({ mouth="Normal", type, baby=false, editin
     
     return (
         <div className="absolute flex flex-row justify-center items-center w-full h-full">
-            <img className="relative" style={{top: selectedOffsets}} src={baby ? `/Parts/Shapelet/Mouths/Shapelet-Mouth-${mouth == "Normal" || mouth == "Wide" ? mouth : "Normal" }.png` : `/Parts/Shapeler/Mouths/Mouth-${mouth}.png`} />
+            <img className="relative" style={{top: selectedOffsets}} src={baby ? `./Parts/Shapelet/Mouths/Shapelet-Mouth-${mouth == "Normal" || mouth == "Wide" ? mouth : "Normal" }.png` : `./Parts/Shapeler/Mouths/Mouth-${mouth}.png`} />
         </div>
     )
 }

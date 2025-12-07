@@ -5,8 +5,8 @@ export default function ColorShapelerBody({ color, type, baby=false, editing=fal
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
-        const bodyPath = baby ? `/Parts/Shapelet/Bodies/Body-${type.slice(0, -1)}t.png` : `/Parts/Shapeler/Bodies/Body-${type}.png`;
-        const outlinePath = baby ? `/Parts/Shapelet/Bodies/Outlines/Body-Outline-${type.slice(0, -1)}t.png` : `/Parts/Shapeler/Bodies/Outlines/Body-Outline-${type}.png`;
+        const bodyPath = baby ? `./Parts/Shapelet/Bodies/Body-${type.slice(0, -1)}t.png` : `./Parts/Shapeler/Bodies/Body-${type}.png`;
+        const outlinePath = baby ? `./Parts/Shapelet/Bodies/Outlines/Body-Outline-${type.slice(0, -1)}t.png` : `./Parts/Shapeler/Bodies/Outlines/Body-Outline-${type}.png`;
 
         if (!canvasRef.current || !bodyPath || !outlinePath || !color) return;
         const canvas = canvasRef.current;
