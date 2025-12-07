@@ -13,6 +13,7 @@ type ShapelerType = {
     mouth: "Normal" | "Happy" | "Mad" | "Sad" | "Shocked" | "Big-Wave" | "Small-Wave" | "Wide";
     eyebrow: "Normal" | "Confused" | "Excited" | "Excited-Surround" | "Mad" | "Scared-Under-Round" | "Worried";
     mood: "Normal" | "Hungry" | "Happy" | "Sad" | "Angry" | "Excited" | "Confused" | "Shocked";
+    name: string;
 }
 
 export default function ShapelerEditor() {
@@ -27,7 +28,8 @@ export default function ShapelerEditor() {
         pupil: "Normal",
         mouth: "Normal",
         eyebrow: "Normal",
-        mood: "Normal"
+        mood: "Normal",
+        name: ""
     });
 
     function setHexColorByChannel(hex: string, channel: "r" | "g" | "b", value: number) {
@@ -51,7 +53,8 @@ export default function ShapelerEditor() {
                 pupil: "Normal",
                 mouth: "Normal",
                 eyebrow: "Normal",
-                mood: "Normal"
+                mood: "Normal",
+                name: ""
             });
         }
         setLoaded(true);
@@ -70,7 +73,7 @@ export default function ShapelerEditor() {
         <div className = "absolute top-0 left-0 w-full h-full min-h-220">
             <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center cursor-pointer">
                 { loaded && <Shapeler color={shapeler.color} type={shapeler.type} male={shapeler.male} baby={shapeler.baby} pupil={shapeler.pupil} mouth={shapeler.mouth} eyebrow={shapeler.eyebrow} editing /> }
-                <input className="relative bottom-65 text-6xl font-bold text-[#5b4636] border-b-4 text-center w-100 min-w-100 focus-visible:outline-none" placeholder={shapeler.baby ? shapeler.type.slice(0, -1) + "t" : shapeler.type}/>
+                <input spellCheck="false" autoCorrect="off" autoCapitalize="none" autoComplete="off" className="relative bottom-65 text-6xl font-bold text-[#5b4636] border-b-4 text-center w-100 min-w-100 focus-visible:outline-none" placeholder={shapeler.baby ? shapeler.type.slice(0, -1) + "t" : shapeler.type} value={shapeler.name} onChange={(e) => setShapeler(s => ({...s, name:e.target.value}))}/>
                 <div className="absolute bottom-60 flex flex-row gap-4">
                     <button onClick={() => {saveShapeler()}} className="bg-[#d7bd8d] cursor-pointer px-6 py-2 rounded-2xl border-5 border-[#b3855e] text-[#5b4636] font-bold transition-all ease-in-out duration-300 hover:-translate-y-2 focus-visible:outline-none">
                         Save
